@@ -8,6 +8,10 @@ module.exports = {
     "eslint:recommended",
     "plugin:react/recommended"
   ],
+  "settings": {
+    "react": {
+      "version": 18.2
+  },
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
