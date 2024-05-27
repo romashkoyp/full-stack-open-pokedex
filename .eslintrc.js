@@ -11,6 +11,7 @@ module.exports = {
   "settings": {
     "react": {
       "version": 18.2
+   },
   },
   "parserOptions": {
     "ecmaFeatures": {
