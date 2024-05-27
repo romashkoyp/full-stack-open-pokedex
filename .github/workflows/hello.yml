@@ -14,4 +14,4 @@ jobs:
           echo "Hello World!!!"
       - name: Run date
         run: |
-          echo date [-u|--utc|--universal] [MMDDhhmm[[CC]YY][.ss]]
+          date [--utc]
