@@ -10,7 +10,7 @@ module.exports = {
   ],
   "settings": {
     "react": {
-      "version": 18.2
+      "version": "18.2.0"
    },
   },
   "parserOptions": {
