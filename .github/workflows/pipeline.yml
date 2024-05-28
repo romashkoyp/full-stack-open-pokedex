@@ -21,6 +21,13 @@ jobs:
         run: npm run test:unit
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      - name: Start application
+        run: npm run start-prod &
+      - name: Wait for application
+        run: |
+          while ! nc -z localhost 5000; do
+            sleep 1
+          done
       - name: Playwright Tests
         run: npm run test:e2e
         
