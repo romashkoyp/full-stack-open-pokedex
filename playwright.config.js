@@ -72,11 +72,11 @@ module.exports = defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: {
     command: 'npm run start-prod',
-    url: 'http://127.0.0.1:5000',
+    url: process.env.CI ? 'http://127.0.0.1:5001' : 'http://127.0.0.1:5000',
     reuseExistingServer: !process.env.CI,
   },
   use: {
-    baseURL: 'http://localhost:5000/',
+    baseURL: process.env.CI ? 'http://localhost:5001/' : 'http://localhost:5000/',
   },
 });
 
