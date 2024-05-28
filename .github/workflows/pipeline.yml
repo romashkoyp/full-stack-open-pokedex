@@ -30,4 +30,3 @@ jobs:
           done
       - name: Playwright Tests
         run: npm run test:e2e
-        
