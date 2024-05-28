@@ -19,3 +19,6 @@ jobs:
         run: npm run eslint
       - name: test
         run: npm run test
+      - name: Playwright Tests
+        run: npm run test:e2e
+        
