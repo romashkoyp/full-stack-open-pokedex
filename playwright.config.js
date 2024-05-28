@@ -77,7 +77,7 @@ module.exports = defineConfig({
     reuseExistingServer: !process.env.CI,
   },
   use: {
-    baseURL: 'http://localhost:5000/',
+    baseURL: 'http://localhost:5001/',
   },
 });
 
