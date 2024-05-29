@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --open --mode development",
     "start-prod": "node app.js",
     "test:unit": "jest tests/jest",
-    "test:e2e": "start-server-and-test start-prod http://localhost:5000 'npx playwright test tests/playwright'",
+    "test:e2e": "npx playwright test tests/playwright",
     "eslint": "eslint ./*/*.{jsx,js}",
     "build": "webpack --mode production"
   },
