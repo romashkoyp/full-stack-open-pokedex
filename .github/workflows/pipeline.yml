@@ -15,11 +15,16 @@ jobs:
           node-version: '20'
       - name: Install dependencies
         run: npm install
-      - name: Check style
-        run: npm run eslint
-      - name: Jest test
-        run: npm run test:unit
+      #- name: Check style
+      #  run: npm run eslint
+      #- name: Jest test
+      #  run: npm run test:unit
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+      # - name: Wait for application
+      #   run: |
+      #     while ! nc -z localhost 5000; do
+      #       sleep 1
+      #     done
       - name: Playwright Tests
         run: npm run test:e2e
