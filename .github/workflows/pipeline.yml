@@ -25,3 +25,9 @@ jobs:
         run: npx playwright install --with-deps
       - name: Playwright Tests
         run: npm run test:e2e
+      - name: Deploy to render.com
+        if: github.ref == 'refs/heads/main'
+        env:
+          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          curl "$deploy_url"

@@ -2,8 +2,8 @@
 
 # echo "Build script"
 
-# Build React application
-npm run build
+# Build React application for render.com
+npm install && npm run build
 
 # Start the development server
-npx serve -s build
+npm run start-prod
