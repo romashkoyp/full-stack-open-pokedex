@@ -19,6 +19,8 @@ jobs:
         run: npm install start-server-and-test --save-dev
       #- name: Check style
       #  run: npm run eslint
+      - name: Build
+        run: npm run build
       #- name: Jest test
       #  run: npm run test:unit
       - name: Install Playwright Browsers
