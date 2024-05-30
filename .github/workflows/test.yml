@@ -17,5 +17,5 @@ jobs:
         run: echo "$COMMIT_MESSAGES"
 
       - name: print messages if they have clue word
-        if: contains(${{ env.COMMIT_MESSAGES }}, '#skip')
+        if: contains(join(${{ env.COMMIT_MESSAGES }}, ' '), '#skip')
         run: echo "there WAS word skip"
