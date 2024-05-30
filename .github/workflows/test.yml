@@ -28,8 +28,9 @@ jobs:
 
       - name: print messages if they have clue word
         run: |
-          messages=$(echo "${{ toJson(github.event.commits.*.message) }}" | sed 's/\[//g' | sed 's/\]//g' | sed 's/"//g')
-          for message in $messages; do 
+          messages="${{ toJson(github.event.commits.*.message) }}"
+          messages=$(echo "$messages" | sed 's/\[//g' | sed 's/\]//g' | sed 's/"//g')
+          for message in $messages; do
             if [[ $message =~ \#skip ]]; then
               echo "there WAS word skip"
             fi
