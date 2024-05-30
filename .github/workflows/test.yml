@@ -8,12 +8,14 @@ on:
 jobs:
   a_test_job:
     runs-on: ubuntu-20.04
+    env:
+      COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
     steps:
       - uses: actions/checkout@v4
-      - name: commit messages
-        env:
-          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+
+      - name: Commit messages
         run: echo "$COMMIT_MESSAGES"
+
       - name: print messages if they have clue word
         if: contains(join(${{ env.COMMIT_MESSAGES }}, ' '), '#skip')
         run: echo "$COMMIT_MESSAGES"
