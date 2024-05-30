@@ -27,7 +27,7 @@ jobs:
       - name: Playwright Tests
         run: npm run test:e2e
       - name: Deploy to render.com
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        if: github.event_name == 'push'
         env:
           deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
         run: |
