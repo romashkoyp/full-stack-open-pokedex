@@ -4,7 +4,7 @@ on:
     branches:
       - main
   pull_request:
-    branches: [crazy-experiment]
+    branches: [main]
     types: [opened, synchronize]
 jobs:
   simple_deployment_pipeline:
