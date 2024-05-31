@@ -31,6 +31,7 @@ jobs:
         with:
           text: Build failed
           description: >
-           **commit ${{ github.event.commits[0].url }} by ${{ github.event.commits[0].committer.username }} broke the build**
+           **commit ${{ github.event.commits[0].url }}\n
+           by ${{ github.event.commits[0].committer.username }} broke the build**
           severity: error
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
