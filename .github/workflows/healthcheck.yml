@@ -32,7 +32,7 @@ jobs:
       
       - name: app is dead
         uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
-        if: ${{ steps.healthcheck.conclusion == 'skipped' }}
+        if: ${{ steps.healthcheck.conclusion == 'failure' }}
         with:
           description: Web app is dead https://full-stack-open-pokedex-1stk.onrender.com/
           severity: error
