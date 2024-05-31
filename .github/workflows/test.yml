@@ -22,7 +22,7 @@ jobs:
           text: A new version of Pokedex was deployed
           description: >
             **to https://full-stack-open-pokedex-1stk.onrender.com by **
-          details: ${{ github.event.commits[0].pusher.name }}
+          details: ${{ github.event.commits[0].pusher }}
           severity: info
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
          
