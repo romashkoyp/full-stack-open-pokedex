@@ -36,16 +36,16 @@ jobs:
         run: npm run test:e2e
         
       - name: Deploy to render.com
-        if: github.event_name == 'push' && ( ! contains(join(toJson(github.event.commits.*.message)), '#skip') )
+        if: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message)), '#skip') }}
         env:
           deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
         run: |
           curl "$deploy_url"
 
   tag_realease:
-    needs: simple_deployment_pipeline
+    needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
-    if: github.event_name == 'push' && ( ! contains(join(toJson(github.event.commits.*.message)), '#skip') )
+    if: ${{ github.event_name == 'push' && !contains(join(toJson(github.event.commits.*.message)), '#skip') }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
