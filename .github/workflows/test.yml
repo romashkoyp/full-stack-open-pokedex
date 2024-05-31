@@ -27,8 +27,7 @@ jobs:
         uses: rjstone/discord-webhook-notify@v1
         if: ${{ steps.message.conclusion == 'skipped' }}
         with:
-          severity: info
-          color: '#ff00aa'
+          severity: error
           avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
           description: This is a custom description.
           details: 'Custom details: Somebody set up us the bomb.'
