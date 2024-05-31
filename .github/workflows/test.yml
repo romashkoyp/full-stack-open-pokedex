@@ -30,6 +30,5 @@ jobs:
           severity: error
           description: This is a custom description.
           details: 'Custom details: Somebody set up us the bomb.'
-          footer: This is a footer.
           text: This is where text goes.
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
