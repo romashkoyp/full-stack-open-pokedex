@@ -19,6 +19,7 @@ jobs:
             echo "it WAS NOT word HI in the message"
             exit 1
           fi
+        shell: bash
       
       - name: Success message to Discord
         uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
