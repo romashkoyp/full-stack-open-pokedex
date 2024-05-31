@@ -21,14 +21,18 @@ jobs:
         with:
           severity: info
           text: it WAS word HI in the message
-          details: "**Commit:** ${{ github.event.commits[0].commit.url }}" 
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
          
       - name: Failure message to Discord Custom
-        uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
+        uses: rjstone/discord-webhook-notify@v1
         if: ${{ steps.message.conclusion == 'skipped' }}
         with:
-          severity: error
-          text: it WAS NO word HI in the message
-          details: "**Commit:** ${{ github.event.commits[0].commit.url }}" 
+          severity: info
+          username: CustomUsername
+          color: '#ff00aa'
+          avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
+          description: This is a custom description.
+          details: 'Custom details: Somebody set up us the bomb.'
+          footer: This is a footer.
+          text: This is where text goes.
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
