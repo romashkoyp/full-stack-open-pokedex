@@ -17,6 +17,7 @@ jobs:
             echo "it WAS word HI in the message"
           else
             echo "it WAS NO word HI in the message"
+          fi
       
       - name: Success message to Discord
         uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
