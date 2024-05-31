@@ -12,20 +12,26 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: success if there is word HI in the message
-        if: ${{ contains(join(toJson(github.event.commits.*.message)), 'hi') }}
-        run: echo "it WAS word HI in the message"
+        id: check_message
+        run: |
+          if ${{ contains(join(github.event.commits.*.message, ' '), 'hi') }}; then
+            echo "it WAS word HI in the message"
+          else
+            echo "it WAS NOT word HI in the message"
+            exit 1
+          fi
       
       - name: Success message to Discord
         uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
-        if: success()
+        if: steps.check_message.outcome == 'success'
         with:
           severity: info
           details: it WAS word HI in the message
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       
       - name: Failure message to Discord
-        uses: rjstone/discord-webhook-notify@v1
-        if: failure()
+        uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
+        if: steps.check_message.outcome == 'failure'
         with:
           severity: error
           details: it WAS NOT word HI in the message
