@@ -18,7 +18,7 @@ jobs:
       
       - name: Success message to Discord
         uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
-        if: ${{ success() && steps.message.conclusion == 'success' }}
+        if: ${{ steps.message.conclusion == 'success' }}
         with:
           severity: info
           details: it WAS word HI in the message
