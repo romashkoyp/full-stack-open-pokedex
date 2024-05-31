@@ -29,6 +29,6 @@ jobs:
         with:
           severity: error
           description: commit
-          details: 'Custom details: Somebody set up us the bomb.'
+          details: ${{ github.event.commits.*.url }}
           text: there WAS NO word HI in the message
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
