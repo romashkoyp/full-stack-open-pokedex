@@ -26,7 +26,7 @@ jobs:
          
       - name: Failure message to Discord
         uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
-        if: ${{ failure() && steps.message.conclusion == 'failure' }}
+        if: ${{ steps.message.conclusion == 'failure' }}
         with:
           severity: error
           details: it WAS NO word HI in the message
