@@ -24,6 +24,7 @@ jobs:
       
       - name: app is alive
         uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
+        id: success_failed
         if: ${{ steps.healthcheck.conclusion == 'success' }}
         with:
           description: Web app is still alive https://full-stack-open-pokedex-1stk.onrender.com/
@@ -32,7 +33,7 @@ jobs:
       
       - name: app is dead
         uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
-        if: ${{ steps.healthcheck.conclusion == 'failure' }}
+        if: ${{ steps.success_failed.conclusion == 'skipped' }}
         with:
           description: Web app is dead https://full-stack-open-pokedex-1stk.onrender.com/
           severity: error
