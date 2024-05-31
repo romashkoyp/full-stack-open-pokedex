@@ -15,11 +15,8 @@ jobs:
         run: |
           if ${{ contains(join(github.event.commits.*.message, ' '), 'hi') }}; then
             echo "it WAS word HI in the message"
-            exit 0
           else
             echo "it WAS NO word HI in the message"
-            exit 1
-          fi
       
       - name: Success message to Discord
         uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
@@ -33,11 +30,9 @@ jobs:
         id: check_message_2
         run: |
           if ${{ !contains(join(github.event.commits.*.message, ' '), 'hi') }}; then
-            echo "it WAS word HI in the message"
-            exit 0
-          else
             echo "it WAS NO word HI in the message"
-            exit 1
+          else
+            echo "it WAS word HI in the message"
           fi
       
       - name: Failure message to Discord
