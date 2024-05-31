@@ -1,4 +1,5 @@
 name: Testing stuff
+
 on:
   push:
     branches:
@@ -12,33 +13,20 @@ jobs:
 
       - name: success if there is word HI in the message
         id: check_message
-        run: |
-          if ${{ contains(join(github.event.commits.*.message, ' '), 'hi') }}; then
-            echo "it WAS word HI in the message"
-          else
-            echo "it WAS NO word HI in the message"
-          fi
+        if: ${{ contains(join(github.event.commits.*.message, ' '), 'hi') }}
+        run: echo "success"
       
       - name: Success message to Discord
         uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
-        if: steps.check_message.outcome == 'success'
+        if: success()
         with:
           severity: info
           details: it WAS word HI in the message
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-      
-      - name: failure if there is NO word HI in the message
-        id: check_message_2
-        run: |
-          if ${{ !contains(join(github.event.commits.*.message, ' '), 'hi') }}; then
-            echo "it WAS NO word HI in the message"
-          else
-            echo "it WAS word HI in the message"
-          fi
-      
+         
       - name: Failure message to Discord
         uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
-        if: steps.check_message_2.outcome == 'failure'
+        if: failure()
         with:
           severity: error
           details: it WAS NO word HI in the message
