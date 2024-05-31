@@ -1,5 +1,4 @@
 name: Healthcheck
-
 on:
   push:
     branches:
@@ -16,14 +15,10 @@ jobs:
         id: healthcheck
         with:
           url: https://full-stack-open-pokedex-1stk.onrender.com/
-          max-attempts: 1
+          follow-redirect: false
+          max-attempts: 2
           retry-delay: 1s
-          retry-all: false
       
-  send_message_to_Discord:
-    needs: [a_test_job]
-    runs-on: ubuntu-20.04
-    steps:
       - name: app is alive
         uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
         id: success_failed
@@ -31,12 +26,4 @@ jobs:
         with:
           description: Web app is still alive https://full-stack-open-pokedex-1stk.onrender.com/
           severity: info
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-          
-      - name: app is dead
-        uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
-        if: ${{ steps.success_failed.conclusion == 'skipped' }}
-        with:
-          description: Web app is dead https://full-stack-open-pokedex-1stk.onrender.com/
-          severity: error
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
