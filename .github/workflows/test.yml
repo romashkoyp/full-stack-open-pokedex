@@ -28,7 +28,6 @@ jobs:
         if: ${{ steps.message.conclusion == 'skipped' }}
         with:
           severity: error
-          avatarUrl: https://github.githubassets.com/images/modules/logos_page/Octocat.png
           description: This is a custom description.
           details: 'Custom details: Somebody set up us the bomb.'
           footer: This is a footer.
