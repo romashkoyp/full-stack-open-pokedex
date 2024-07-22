@@ -1,0 +1,28 @@
+name: Healthcheck
+on:
+  schedule:
+    - cron: '0 0 1 1 *'
+
+jobs:
+  a_test_job:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check the deployed service URL
+        uses: jtalk/url-health-check-action@b716ccb6645355dd9fcce8002ce460e5474f7f00
+        id: healthcheck
+        with:
+          url: https://full-stack-open-pokedex-1stk.onrender.com/
+          follow-redirect: false
+          max-attempts: 2
+          retry-delay: 1s
+      
+      - name: app is alive
+        uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
+        id: success_failed
+        if: ${{ steps.healthcheck.conclusion == 'success' }}
+        with:
+          description: Web app is still alive https://full-stack-open-pokedex-1stk.onrender.com/
+          severity: info
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
