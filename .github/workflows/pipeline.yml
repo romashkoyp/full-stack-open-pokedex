@@ -42,27 +42,27 @@ jobs:
         run: |
           curl "$deploy_url"
       
-      - name: New version was deployed
-        uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
-        if: ${{ steps.deployment.conclusion == 'success' }}
-        with:
-          text: A new version of Pokedex was deployed
-          description: >
-            to https://full-stack-open-pokedex-1stk.onrender.com
-            by ${{ github.event.commits[0].committer.username }}
-          severity: info
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-
-      - name: Build failed
-        uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
-        if: ${{ steps.deployment.conclusion == 'skipped' }}
-        with:
-          text: Build failed
-          description: >
-           commit ${{ github.event.commits[0].url }}
-           by ${{ github.event.commits[0].committer.username }} broke the build
-          severity: error
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      #- name: New version was deployed
+      #  uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
+      #  if: ${{ steps.deployment.conclusion == 'success' }}
+      #  with:
+      #    text: A new version of Pokedex was deployed
+      #    description: >
+      #      to https://full-stack-open-pokedex-1stk.onrender.com
+      #      by ${{ github.event.commits[0].committer.username }}
+      #    severity: info
+      #    webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      #
+      #- name: Build failed
+      #  uses: rjstone/discord-webhook-notify@89b0bf43c2c8514f70d0dcba4a706b904e8a3112
+      #  if: ${{ steps.deployment.conclusion == 'skipped' }}
+      #  with:
+      #    text: Build failed
+      #    description: >
+      #     commit ${{ github.event.commits[0].url }}
+      #     by ${{ github.event.commits[0].committer.username }} broke the build
+      #    severity: error
+      #    webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   tag_realease:
     needs: [simple_deployment_pipeline]
